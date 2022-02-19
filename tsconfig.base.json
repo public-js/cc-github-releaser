@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@public-js/cc-github-releaser": [
+        "packages/cc-github-releaser/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
