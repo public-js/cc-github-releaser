@@ -24,9 +24,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.BM_GITHUB_PAT }}
+          fetch-depth: 0
 
       - name: Setup Node.js and cache
-        uses: ./.github/actions/nodejs
+        uses: ./.github/actions/setup-node
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v4
@@ -65,7 +66,7 @@ jobs:
       - name: Create GitHub release
         run: npm run cd:gh-release
         env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.BM_GITHUB_PAT }}
+          GITHUB_TOKEN: ${{ secrets.BM_GITHUB_PAT }}
 
 concurrency:
   group: create-release-${{ github.head_ref }}
