@@ -5,6 +5,7 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["custom/imports"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",

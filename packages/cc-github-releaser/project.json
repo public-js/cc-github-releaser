@@ -26,7 +26,15 @@
         "tsConfig": "packages/cc-github-releaser/tsconfig.lib.json",
         "packageJson": "packages/cc-github-releaser/package.json",
         "main": "packages/cc-github-releaser/src/index.ts",
-        "assets": ["packages/cc-github-releaser/*.md"]
+        "assets": ["packages/cc-github-releaser/README.md", "LICENSE"]
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npm publish --tag=latest --access public",
+        "cwd": "dist/packages/cc-github-releaser"
       }
     }
   },

@@ -10,14 +10,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2017"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@public-js/cc-github-releaser": [
-        "packages/cc-github-releaser/src/index.ts"
-      ]
+      "@public-js/cc-github-releaser": ["packages/cc-github-releaser/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
