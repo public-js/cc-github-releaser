@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 2
 
       - name: Setup Node.js and cache
-        uses: ./.github/actions/nodejs
+        uses: ./.github/actions/setup-node
 
       #- name: Typecheck
       #  run: npm run typecheck

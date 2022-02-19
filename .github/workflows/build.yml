@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js and cache
-        uses: ./.github/actions/nodejs
+        uses: ./.github/actions/setup-node
 
       - name: Build only changed packages
         if: ${{ env.IS_MAIN == 'false' }}

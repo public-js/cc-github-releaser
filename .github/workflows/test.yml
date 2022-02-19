@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js and cache
-        uses: ./.github/actions/nodejs
+        uses: ./.github/actions/setup-node
 
       - name: Test all packages
         run: npm run cd:all:test
