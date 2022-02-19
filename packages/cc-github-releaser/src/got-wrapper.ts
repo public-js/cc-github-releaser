@@ -39,9 +39,6 @@ const create: () => Got = <T = unknown>() =>
                         if (response?.body) {
                             error.body = response.body;
                         }
-                        if (error.code === 'ERR_NON_2XX_3XX_RESPONSE') {
-                            return error;
-                        }
                         // Nicer errors
                         if (response?.body) {
                             error.name = 'GitHubError';
