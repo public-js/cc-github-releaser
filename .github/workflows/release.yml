@@ -30,7 +30,6 @@ jobs:
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v4
-        if: ${{ env.IS_MAIN == 'false' && env.IS_FORK == 'false' && env.IS_DBOT == 'false' }}
         with:
           gpg_private_key: ${{ secrets.BM_GPG_PRIVATE }}
           passphrase: ${{ secrets.BM_GPG_PASS }}
