@@ -1,6 +1,6 @@
 {
   "name": "cc-github-releaser",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "wf:prettier": "prettier '**/*.{js,ts,scss,html,md,json,yml}'",

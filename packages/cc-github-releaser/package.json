@@ -1,6 +1,6 @@
 {
   "name": "@public-js/cc-github-releaser",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Create GitHub releases from git metadata",
   "bin": {
     "cc-github-releaser": "./src/cc-github-releaser.js"
