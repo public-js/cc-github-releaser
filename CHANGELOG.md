@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/public-js/cc-github-releaser/compare/1.1.0...2.0.0) (2022-02-20)
+
+
+### Features
+
+* refactor to reduce dependencies ([e7a664d](https://github.com/public-js/cc-github-releaser/commit/e7a664de3e857b48f5f5114a034c37ff8df3fae8))
+* refactor to reduce dependencies ([4c1ae9e](https://github.com/public-js/cc-github-releaser/commit/4c1ae9eb2ae13fa229747a18ad06cc67ab99b02c))
+
 ## [1.1.0](https://github.com/public-js/cc-github-releaser/compare/1.0.0...1.1.0) (2022-02-19)
 
 
