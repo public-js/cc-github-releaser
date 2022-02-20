@@ -11,9 +11,8 @@ import {
 } from './types';
 import conventionalChangelog from 'conventional-changelog';
 import gitSemverTags from 'git-semver-tags';
-import q from 'q';
 import { parse as semverParse } from 'semver';
-import through2 from 'through2';
+import { Transform, TransformCallback } from 'stream';
 
 function ccGithubReleaser({
     token,
@@ -44,67 +43,60 @@ function ccGithubReleaser({
         });
     let _gitRawCommitsOpts: GitRawCommitsOpts = gitRawCommitsOpts || {};
 
-    const promises: Promise<unknown>[] = [];
+    const requests: Promise<unknown>[] = [];
 
-    q.nfcall(gitSemverTags)
-        .then(function (tags: string[]) {
-            if (!tags?.length) {
-                setImmediate(userCb, new Error('No semver tags found'));
-                return;
-            }
+    gitSemverTags((err?: unknown | null, tags?: string[]) => (err ? userCb(err) : generateChangelogs(tags)));
 
-            const releaseCount = _changelogOpts.releaseCount;
-            if (releaseCount !== 0) {
-                _gitRawCommitsOpts = Object.assign({}, { from: tags[releaseCount] }, _gitRawCommitsOpts);
-            }
-            _gitRawCommitsOpts.to = _gitRawCommitsOpts.to || tags[0];
+    const generateChangelogs = (tags: string[]) => {
+        if (!tags?.length) {
+            setImmediate(userCb, new Error('No semver tags found'));
+            return;
+        }
 
-            conventionalChangelog(_changelogOpts, _context, _gitRawCommitsOpts, _parserOpts, _writerOpts)
-                .on('error', function (err) {
-                    userCb(err);
-                })
-                .pipe(
-                    through2.obj(
-                        function (chunk: Chunk, enc: BufferEncoding, cb: through2.TransformCallback) {
-                            if (!chunk?.keyCommit?.version) {
-                                cb();
-                                return;
-                            }
+        const releaseCount = _changelogOpts.releaseCount;
+        if (releaseCount !== 0) {
+            _gitRawCommitsOpts = Object.assign({}, { from: tags[releaseCount] }, _gitRawCommitsOpts);
+        }
+        _gitRawCommitsOpts.to = _gitRawCommitsOpts.to || tags[0];
 
-                            promises.push(
-                                api(`repos/${_context.owner}/${_context.repository}/releases`, {
-                                    method: 'POST',
-                                    context: { token },
-                                    body: {
-                                        tag_name: chunk.keyCommit.version,
-                                        target_commitish: _changelogOpts.targetCommitish,
-                                        name:
-                                            (_changelogOpts.releasePrefix || '') +
-                                            (_changelogOpts.name || chunk.keyCommit.version),
-                                        body: chunk.log,
-                                        draft: _changelogOpts.draft || false,
-                                        prerelease: semverParse(chunk.keyCommit.version).prerelease.length > 0,
-                                    },
-                                }),
-                            );
+        conventionalChangelog(_changelogOpts, _context, _gitRawCommitsOpts, _parserOpts, _writerOpts)
+            .on('error', (err: Error) => userCb(err))
+            .pipe(
+                new Transform({
+                    transform: createApiRequest,
+                    flush: executeApiRequests,
+                    objectMode: true,
+                    highWaterMark: 16,
+                }),
+            );
+    };
 
-                            cb();
-                        },
-                        function () {
-                            q.all(promises)
-                                .then(function (responses) {
-                                    userCb(null, responses);
-                                })
-                                .catch(function (err) {
-                                    userCb(err);
-                                });
-                        },
-                    ),
-                );
-        })
-        .catch(function (err) {
-            userCb(err);
-        });
+    const createApiRequest = (chunk: Chunk, enc: BufferEncoding, cb: TransformCallback) => {
+        if (!chunk?.keyCommit?.version) {
+            cb();
+            return;
+        }
+        requests.push(
+            api(`repos/${_context.owner}/${_context.repository}/releases`, {
+                method: 'POST',
+                context: { token },
+                body: {
+                    tag_name: chunk.keyCommit.version,
+                    target_commitish: _changelogOpts.targetCommitish,
+                    name: (_changelogOpts.releasePrefix || '') + (_changelogOpts.name || chunk.keyCommit.version),
+                    body: chunk.log,
+                    draft: _changelogOpts.draft || false,
+                    prerelease: semverParse(chunk.keyCommit.version).prerelease.length > 0,
+                },
+            }),
+        );
+        cb();
+    };
+
+    const executeApiRequests = () =>
+        Promise.all(requests)
+            .then((responses: Awaited<unknown>[]) => userCb(null, responses))
+            .catch((err: Error) => userCb(err));
 }
 
 export default ccGithubReleaser;
