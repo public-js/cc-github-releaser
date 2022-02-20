@@ -10,19 +10,9 @@
     "dateformat": "^4.0.0",
     "git-semver-tags": ">=2.0.0 <5.0.0",
     "got": ">=8.0.0 <12.0.0",
-    "meow": ">=7.0.0 <10.0.0",
-    "q": "^1.4.1",
     "semver": ">=5.0.0 <8.0.0",
     "semver-regex": ">=2.0.0 <4.0.0",
-    "through2": ">=2.0.0 <5.0.0"
-  },
-  "peerDependencies": {
-    "standard-version": ">=8.0.0"
-  },
-  "peerDependenciesMeta": {
-    "standard-version": {
-      "optional": true
-    }
+    "yargs": "^16.0.0"
   },
   "license": "MIT",
   "author": "Public JS <public-js@muffin.blue> (https://github.com/public-js/public-js)",
@@ -36,7 +26,8 @@
     "conventional-changelog",
     "conventional",
     "changelog",
-    "log"
+    "log",
+    "standard-version"
   ],
   "engines": {
     "node": ">=10.3.0"
