@@ -28,7 +28,7 @@ Make sure the token you're going to use has a `public_repo` scope (or `repo` for
 Assign you token to any of the following env variables: `GITHUB_TOKEN`, `GH_TOKEN`, `CONVENTIONAL_GITHUB_RELEASER_TOKEN`
 or pass it with any of these parameters: `-t` or `--token`.
 
-## Workflow setup
+### Workflow setup
 
 For you convenience, you might want to add the following to your root `package.json` file:
 
@@ -44,7 +44,7 @@ Execute it from you workflow like this:
 run: npm run github-release
 ```
 
-## Recommended workflow
+### Recommended workflow
 
 - Commit your changes
 - Make sure you build/tests pass

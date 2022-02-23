@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@public-js/cc-github-releaser": ["packages/cc-github-releaser/src/index.ts"]
+      "@public-js/cc-github-releaser": ["packages/cc-github-releaser/src/cc-github-releaser.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
