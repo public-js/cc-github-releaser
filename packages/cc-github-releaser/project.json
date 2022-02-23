@@ -26,7 +26,7 @@
         "tsConfig": "packages/cc-github-releaser/tsconfig.lib.json",
         "packageJson": "packages/cc-github-releaser/package.json",
         "main": "packages/cc-github-releaser/src/cc-github-releaser.ts",
-        "assets": ["packages/cc-github-releaser/README.md", "LICENSE"]
+        "assets": ["README.md", "LICENSE"]
       }
     },
     "publish": {
