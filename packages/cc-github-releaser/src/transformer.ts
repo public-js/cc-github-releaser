@@ -1,7 +1,8 @@
-import { TCommit, Transformer } from './types';
 import { Options } from 'conventional-changelog-core';
 import dateFormat from 'dateformat';
 import semverRegex from 'semver-regex';
+
+import { TCommit, Transformer } from './types';
 
 export const transformer: Transformer = (commit: TCommit, cb: Options.Transform.Callback) => {
     if (typeof commit.gitTags === 'string') {
