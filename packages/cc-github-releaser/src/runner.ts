@@ -1,3 +1,8 @@
+import conventionalChangelog from 'conventional-changelog';
+import gitSemverTags from 'git-semver-tags';
+import { parse as semverParse } from 'semver';
+import { Transform, TransformCallback } from 'stream';
+
 import api from './got-wrapper';
 import { transformer } from './transformer';
 import {
@@ -9,10 +14,6 @@ import {
     TemplateContext,
     WriterOpts,
 } from './types';
-import conventionalChangelog from 'conventional-changelog';
-import gitSemverTags from 'git-semver-tags';
-import { parse as semverParse } from 'semver';
-import { Transform, TransformCallback } from 'stream';
 
 function ccGithubReleaser({
     token,
@@ -96,7 +97,7 @@ function ccGithubReleaser({
     const executeApiRequests = () =>
         Promise.all(requests)
             .then((responses: Awaited<unknown>[]) => userCb(null, responses))
-            .catch((err: Error) => userCb(err));
+            .catch((error: Error) => userCb(error));
 }
 
 export default ccGithubReleaser;

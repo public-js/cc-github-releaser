@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import ccGithubReleaser from './runner';
-import { ChangelogOpts, GitRawCommitsOpts, ImportedConfig, ParserOpts, TemplateContext, WriterOpts } from './types';
 import { resolve } from 'path';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
+
+import ccGithubReleaser from './runner';
+import { ChangelogOpts, GitRawCommitsOpts, ImportedConfig, ParserOpts, TemplateContext, WriterOpts } from './types';
 
 const cli = yargs(hideBin(process.argv))
     .option('token', {
@@ -86,8 +87,8 @@ try {
     if (config.writerOpts) {
         writerOpts = config.writerOpts;
     }
-} catch (err) {
-    console.error('Failed to get file:', err);
+} catch (error) {
+    console.error('Failed to get file:', error);
     process.exit(1);
 }
 
