@@ -1,5 +1,5 @@
 {
-  "root": "packages/cc-github-releaser",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/cc-github-releaser/src",
   "projectType": "library",
   "targets": {
@@ -14,12 +14,12 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/cc-github-releaser"],
       "options": {
-        "jestConfig": "packages/cc-github-releaser/jest.config.js",
+        "jestConfig": "packages/cc-github-releaser/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/cc-github-releaser",
