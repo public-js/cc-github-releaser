@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
     displayName: 'cc-github-releaser',
     preset: '../../jest.preset.js',
     globals: {
