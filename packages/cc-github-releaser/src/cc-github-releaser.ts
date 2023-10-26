@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { resolve } from 'path';
+import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import yargs from 'yargs/yargs';
 
 import ccGithubReleaser from './runner';
 import { ChangelogOpts, GitRawCommitsOpts, ImportedConfig, ParserOpts, TemplateContext, WriterOpts } from './types';
@@ -64,6 +64,10 @@ const cli = yargs(hideBin(process.argv))
     })
     .usage('Usage: cc-github-releaser [options]')
     .parse();
+
+if (cli instanceof Promise) {
+    throw new TypeError('Can not process async cli object');
+}
 
 let config: ImportedConfig = {};
 let context: TemplateContext | undefined;
