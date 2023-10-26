@@ -5,8 +5,8 @@
 [![Downloads](https://img.shields.io/npm/dw/@public-js/cc-github-releaser?style=flat)](https://www.npmjs.com/package/@public-js/cc-github-releaser)
 [![Size](https://packagephobia.com/badge?p=@public-js/cc-github-releaser)](https://packagephobia.com/result?p=@public-js/cc-github-releaser)
 
-[![Codacy](https://app.codacy.com/project/badge/Grade/0f195238a77b4aed8905dfb982effbdf)](https://www.codacy.com/gh/public-js/cc-github-releaser/dashboard)
-[![LGTM](https://img.shields.io/lgtm/grade/javascript/g/public-js/cc-github-releaser?logo=lgtm)](https://lgtm.com/projects/g/public-js/cc-github-releaser/context:javascript)
+[![CodeQL](https://github.com/public-js/cc-github-releaser/actions/workflows/codeql-analyze.yml/badge.svg?branch=main)](https://github.com/public-js/cc-github-releaser/actions/workflows/codeql-analyze.yml)
+[![Codacy](https://app.codacy.com/project/badge/Grade/0f195238a77b4aed8905dfb982effbdf)](https://app.codacy.com/gh/public-js/cc-github-releaser/dashboard)
 [![Codecov](https://codecov.io/gh/public-js/cc-github-releaser/branch/main/graph/badge.svg?token=BEOTLb2r0b)](https://codecov.io/gh/public-js/cc-github-releaser)
 [![Code Climate](https://api.codeclimate.com/v1/badges/495500be06bbf1ed21e4/maintainability)](https://codeclimate.com/github/public-js/cc-github-releaser/maintainability)
 
@@ -72,4 +72,4 @@ Although Package Phobia reports this package to be pretty heavy, keep in mind th
 ## License
 
 MIT, [full license text](LICENSE).
-Read more about it on [TLDRLegal](https://www.tldrlegal.com/l/mit).
+Read more about it on [TLDRLegal](https://www.tldrlegal.com/license/mit-license).
