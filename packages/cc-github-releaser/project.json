@@ -1,36 +1,38 @@
 {
+  "name": "cc-github-releaser",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/cc-github-releaser/src",
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/cc-github-releaser/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/cc-github-releaser"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/packages/cc-github-releaser"],
       "options": {
         "jestConfig": "packages/cc-github-releaser/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/cc-github-releaser",
         "tsConfig": "packages/cc-github-releaser/tsconfig.lib.json",
         "packageJson": "packages/cc-github-releaser/package.json",
         "main": "packages/cc-github-releaser/src/cc-github-releaser.ts",
-        "assets": ["README.md", "LICENSE"]
+        "assets": ["README.md", "LICENSE"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "publish": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nx/workspace:run-commands",
       "outputs": [],
       "options": {
         "command": "npm publish --tag=latest --access public",

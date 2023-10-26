@@ -1,7 +1,0 @@
-{
-  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
-  "version": 2,
-  "projects": {
-    "cc-github-releaser": "packages/cc-github-releaser"
-  }
-}
