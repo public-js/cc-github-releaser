@@ -1,6 +1,6 @@
 {
   "name": "@public-js/cc-github-releaser",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Create GitHub releases from git metadata",
   "dependencies": {
     "conventional-changelog": ">=2.0.0 <4.0.0",
